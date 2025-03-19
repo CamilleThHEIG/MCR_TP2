@@ -6,6 +6,8 @@ import javax.swing.*;
 // is it useful to make a singleton class out of this ?
 public class MainWindow {
     private static MainWindow instance = null;
+
+    private JFrame frame;
     private MainWindow(){
         // Creating instance of JFrame
         JFrame frame = new JFrame();
@@ -78,6 +80,7 @@ public class MainWindow {
 
         // making the frame visible
         frame.setVisible(true);
+        this.frame = frame;
     }
 
     public static MainWindow getInstance() {
@@ -88,5 +91,9 @@ public class MainWindow {
     }
     public void sayHello(){
         System.out.println("Hello :D");
+    }
+
+    public void setVisible(boolean value){
+        frame.setVisible(value);
     }
 }
