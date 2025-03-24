@@ -8,9 +8,10 @@ public class Silver implements AccountState {
     }
 
     @Override
-    public void setMiles(int miles) {
+    public void setMiles(double miles) {
         if(miles > 1000){
             account.setState(new Gold(account));
+            this.account.getClient().notifySubscribers();
         }
     }
 }

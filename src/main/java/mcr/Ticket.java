@@ -19,4 +19,8 @@ public enum Ticket {
     public double getMilesCoeff() {
         return milesCoeff;
     }
+
+    public double getFinalPrice(double basePrice){
+        return basePrice*priceCoeff;
+    }
 }

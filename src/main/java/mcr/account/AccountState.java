@@ -1,5 +1,5 @@
 package mcr.account;
 
 public interface AccountState {
-    void setMiles(int miles);
+    void setMiles(double miles);
 }

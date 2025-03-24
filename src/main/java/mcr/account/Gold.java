@@ -8,11 +8,13 @@ public class Gold implements AccountState {
     }
 
     @Override
-    public void setMiles(int miles) {
+    public void setMiles(double miles) {
         if(miles < 1000){
             this.account.setState(new Silver(account));
+            this.account.getClient().notifySubscribers();
         } else if(miles > 10000){
             this.account.setState(new Platinium(account));
+            this.account.getClient().notifySubscribers();
         }
     }
 }

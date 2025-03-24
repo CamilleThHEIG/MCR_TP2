@@ -1,14 +1,16 @@
 package mcr;
 
 import mcr.account.Client;
+import mcr.account.Publisher;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Map;
 import javax.swing.*;
 
-// is it useful to make a singleton class out of this ?
-public class MainWindow {
+public class MainWindow implements Subscriber{
     private JFrame frame;
+    private Flight selectedFlight;
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights){
         // Creating instance of JFrame
         JFrame frame = new JFrame();
@@ -31,11 +33,16 @@ public class MainWindow {
         JLabel flightLabel = new JLabel("Flight");
         JComboBox flightComboBox = new JComboBox();
         for(Flight flight : flights){
+            if(selectedFlight == null){
+                selectedFlight = flight;
+            }
             flightComboBox.addItem(flight);
         }
 
         JComboBox flightClassComboBox = new JComboBox();
-        flightClassComboBox.addItem("Economy 300$");  // just for testing
+        for(Map.Entry<Ticket, Double> entry : this.selectedFlight.getTicketsPrice().entrySet()) {
+            flightClassComboBox.addItem(entry.getKey() + " " + entry.getValue());
+        }
         JButton bookCashButton = new JButton("Book (cash)");
         JButton bookMilesButton = new JButton("Book (miles)");
 
@@ -95,5 +102,10 @@ public class MainWindow {
 
     public void setVisible(boolean value){
         frame.setVisible(value);
+    }
+
+    @Override
+    public void update(Publisher publisher) {
+
     }
 }
