@@ -2,6 +2,7 @@ package mcr;
 
 import mcr.account.Client;
 import mcr.account.Publisher;
+import mcr.display.ClientDetailsWindow;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -11,6 +12,8 @@ import javax.swing.*;
 public class MainWindow implements Subscriber{
     private JFrame frame;
     private Flight selectedFlight;
+    private Ticket selectedTicket;
+
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights){
         // Creating instance of JFrame
         JFrame frame = new JFrame();
@@ -25,10 +28,26 @@ public class MainWindow implements Subscriber{
             clientComboBox.addItem(client);
         }
         JButton detailsButton = new JButton("Details");
+        detailsButton.addActionListener(e -> {
+            Client selectedClient = (Client) clientComboBox.getSelectedItem();
+            if (selectedClient != null) {
+                new ClientDetailsWindow(selectedClient);
+            }
+        });
 
         JLabel creditsLabel = new JLabel("Credits");
         JTextField creditsField = new JTextField();
         JButton addButton = new JButton("Add");
+        addButton.addActionListener(e -> {
+            Client selectedClient = (Client) clientComboBox.getSelectedItem();
+            try {
+                int amount = Integer.parseInt(creditsField.getText());
+                selectedClient.addCredit(amount);
+                creditsField.setText("");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Veuillez entrer un nombre valide !");
+            }
+        });
 
         JLabel flightLabel = new JLabel("Flight");
         JComboBox flightComboBox = new JComboBox();
@@ -44,7 +63,20 @@ public class MainWindow implements Subscriber{
             flightClassComboBox.addItem(entry.getKey() + " " + entry.getValue());
         }
         JButton bookCashButton = new JButton("Book (cash)");
+        bookCashButton.addActionListener(e -> {
+            Client selectedClient = (Client) clientComboBox.getSelectedItem();
+            if (selectedClient != null) {
+                selectedClient.bookWithCredits(selectedFlight, selectedTicket);
+            }
+        });
+
         JButton bookMilesButton = new JButton("Book (miles)");
+        bookMilesButton.addActionListener(e -> {
+            Client selectedClient = (Client) clientComboBox.getSelectedItem();
+            if (selectedClient != null) {
+
+            }
+        });
 
         JButton statusButton = new JButton("Statuses");
         JButton quitButton = new JButton("Quit");

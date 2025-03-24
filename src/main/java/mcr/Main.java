@@ -22,11 +22,6 @@ public class Main {
 
         MainWindow w = new MainWindow(clients, flights);
 
-        Client c = new Client("johnny","depp");
-        c.getAccount().getAccountType();
-
-
-        new ClientDetailsWindow(c);
 //        Flight f = new Flight("a-310",200,50, Ticket.Economy);
 //        Client c = new Client("Bob", "Dylan");
 //        c.addCredit(20000000);
