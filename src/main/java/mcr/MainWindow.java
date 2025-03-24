@@ -1,14 +1,15 @@
 package mcr;
 
+import mcr.account.Client;
+
 import java.awt.*;
+import java.util.LinkedList;
 import javax.swing.*;
 
 // is it useful to make a singleton class out of this ?
 public class MainWindow {
-    private static MainWindow instance = null;
-
     private JFrame frame;
-    private MainWindow(){
+    public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights){
         // Creating instance of JFrame
         JFrame frame = new JFrame();
 
@@ -18,7 +19,9 @@ public class MainWindow {
 
         JLabel clientLabel = new JLabel("Client");
         JComboBox clientComboBox = new JComboBox();
-        clientComboBox.addItem("Boucher Guy");  // just for testing
+        for(Client client : clients){
+            clientComboBox.addItem(client);
+        }
         JButton detailsButton = new JButton("Details");
 
         JLabel creditsLabel = new JLabel("Credits");
@@ -27,7 +30,10 @@ public class MainWindow {
 
         JLabel flightLabel = new JLabel("Flight");
         JComboBox flightComboBox = new JComboBox();
-        flightComboBox.addItem("LX1 (1200 miles)");  // just for testing
+        for(Flight flight : flights){
+            flightComboBox.addItem(flight);
+        }
+
         JComboBox flightClassComboBox = new JComboBox();
         flightClassComboBox.addItem("Economy 300$");  // just for testing
         JButton bookCashButton = new JButton("Book (cash)");
@@ -83,12 +89,6 @@ public class MainWindow {
         this.frame = frame;
     }
 
-    public static MainWindow getInstance() {
-        if (instance == null){
-            instance = new MainWindow();
-        }
-        return instance;
-    }
     public void sayHello(){
         System.out.println("Hello :D");
     }

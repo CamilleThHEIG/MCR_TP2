@@ -11,4 +11,12 @@ public class Client {
         this.lastName = lastName;
         this.id = ++idCounter;
     }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
