@@ -13,7 +13,8 @@ public class Main {
         LinkedList<Ticket> tickets = new LinkedList<>();
         tickets.add(Ticket.Economy);
         tickets.add(Ticket.Business);
-
+        Client c = new Client("Bob", "Dylan");
+        clients.add(c);
         clients.add(new Client("Alice", "Dylan"));
         flights.add(new Flight("a-310",200,50,tickets));
         flights.add(new Flight("a-320",200,70,tickets));
