@@ -12,18 +12,13 @@ public class MainWindow implements Subscriber {
     private JFrame frame;
     private Flight selectedFlight;
     private Ticket selectedTicketClass;
-    private LinkedList<Client> clients;
-    private LinkedList<Flight> flights;
 
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
-        this.clients = clients;
-        this.flights = flights;
         this.selectedFlight = flights.getFirst();
 
         frame = new JFrame();
         frame.setTitle("Clients manager");
 
-        // Client selection
         JLabel clientLabel = new JLabel("Client");
         JComboBox<Client> clientComboBox = new JComboBox<>();
         for (Client client : clients) {
@@ -38,7 +33,6 @@ public class MainWindow implements Subscriber {
             }
         });
 
-        // Credits management
         JLabel creditsLabel = new JLabel("Credits");
         JTextField creditsField = new JTextField();
         JButton addButton = new JButton("Add");
@@ -49,11 +43,10 @@ public class MainWindow implements Subscriber {
                 selectedClient.addCredit(amount);
                 creditsField.setText("");
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(frame, "Please enter a valid number!");
+                JOptionPane.showMessageDialog(frame, "Please enter a valid number");
             }
         });
 
-        // Flight booking
         JLabel flightLabel = new JLabel("Flight");
         JComboBox<Flight> flightComboBox = new JComboBox<>();
         for (Flight flight : flights) {
@@ -79,7 +72,7 @@ public class MainWindow implements Subscriber {
             if (selectedClient != null && selectedFlight != null && selectedTicketClass != null) {
                 selectedClient.bookWithCredits(selectedFlight, selectedTicketClass);
             } else {
-                JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class!");
+                JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }
         });
 
@@ -89,18 +82,16 @@ public class MainWindow implements Subscriber {
             if (selectedClient != null && selectedFlight != null && selectedTicketClass != null) {
                 //selectedClient.bookWithMiles(selectedFlight, selectedTicketClass);
             } else {
-                JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class!");
+                JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }
         });
 
-        // Other buttons
         JButton statusButton = new JButton("Statuses");
         //statusButton.addActionListener(e -> new StatusesWindow(clients));
 
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> frame.dispose());
 
-        // Layout setup
         clientLabel.setBounds(50, 50, 80, 30);
         clientComboBox.setBounds(100, 50, 130, 30);
         detailsButton.setBounds(240, 50, 100, 30);
@@ -118,7 +109,6 @@ public class MainWindow implements Subscriber {
         statusButton.setBounds(20, 200, 100, 30);
         quitButton.setBounds(130, 200, 80, 30);
 
-        // Add components to frame
         frame.add(clientLabel);
         frame.add(clientComboBox);
         frame.add(detailsButton);

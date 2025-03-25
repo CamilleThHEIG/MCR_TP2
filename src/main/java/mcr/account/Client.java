@@ -39,15 +39,23 @@ public class Client implements Publisher{
         return lastAction;
     }
 
-    public void bookWithCredits(Flight flight, Ticket ticketClass) {
-        double cost = flight.getTicketBasePrice() * ticketClass.getPriceCoeff();
+    public void bookWithCredits(Flight flight, Ticket ticket) {
+        double cost = flight.getTicketBasePrice() * ticket.getPriceCoeff();
         if (this.account.getCredit() >= cost) {
             this.account.addCredit(cost * -1) ;
-            this.account.setMiles(this.account.getMiles() + flight.getDistance() * ticketClass.getMilesCoeff());
+            this.account.setMiles(this.account.getMiles() + flight.getDistance() * ticket.getMilesCoeff());
             this.lastAction = "Booked " + flight + " class (credits)";
             this.notifySubscribers();
         } else {
             this.lastAction = "Not enough credits to book " + flight;
+        }
+    }
+
+    public void bookWithMiles(Flight flight, Ticket ticket) {
+        double cost = flight.getTicketBasePrice() * ticket.getPriceCoeff();
+        if (this.account.getCredit() >= cost) {
+            this.account.addCredit(cost * -1) ;
+            this.account.setMiles(this.account.getMiles() + flight.getDistance() * ticket.getMilesCoeff());
         }
     }
 
