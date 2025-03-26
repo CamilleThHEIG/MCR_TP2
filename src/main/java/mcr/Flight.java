@@ -6,12 +6,10 @@ public class Flight {
     private String name;
     private int distance;
     private double ticketPrice;
-    private List<Ticket> ticketTypes;
-    public Flight(String name, int distance, double ticketPrice, List<Ticket> ticketTypes) {
+    public Flight(String name, int distance, double ticketPrice) {
         this.name = name;
         this.distance = distance;
         this.ticketPrice = ticketPrice;
-        this.ticketTypes = ticketTypes;
     }
 
     public int getDistance() {
@@ -22,17 +20,6 @@ public class Flight {
         return ticketPrice;
     }
 
-    public List<Ticket> getTicketTypes() {
-        return ticketTypes;
-    }
-
-    public Map<Ticket, Double> getTicketsPrice(){
-        Map<Ticket, Double> map = new HashMap<>();
-        for(Ticket t : ticketTypes){
-            map.put(t,t.getFinalPrice(ticketPrice));
-        }
-        return map;
-    }
 
     public String toString() {
         return name + " (" + distance + " miles)";

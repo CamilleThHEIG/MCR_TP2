@@ -1,22 +1,21 @@
 package mcr.display;
 
 import mcr.Flight;
-import mcr.Subscriber;
-import mcr.Ticket;
+import mcr.TicketType;
 import mcr.account.Client;
-import mcr.account.Publisher;
 
 import javax.swing.*;
 import java.util.LinkedList;
 
-public class MainWindow implements Subscriber {
+public class MainWindow {
     private final JFrame frame;
     private Flight selectedFlight;
-    private Ticket selectedTicket;
+    private TicketType selectedTicket;
+    private Client selectedClient;
 
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
         this.selectedFlight = flights.getFirst();
-
+        this.selectedClient = clients.getFirst();
         frame = new JFrame();
         frame.setTitle("Clients manager");
 
@@ -28,7 +27,7 @@ public class MainWindow implements Subscriber {
 
         JButton detailsButton = new JButton("Details");
         detailsButton.addActionListener(e -> {
-            Client selectedClient = (Client) clientComboBox.getSelectedItem();
+            selectedClient = (Client) clientComboBox.getSelectedItem();
             if (selectedClient != null) {
                 new ClientDetailsWindow(selectedClient);
             }
@@ -38,7 +37,7 @@ public class MainWindow implements Subscriber {
         JTextField creditsField = new JTextField();
         JButton addButton = new JButton("Add");
         addButton.addActionListener(e -> {
-            Client selectedClient = (Client) clientComboBox.getSelectedItem();
+            selectedClient = (Client) clientComboBox.getSelectedItem();
             try {
                 int amount = Integer.parseInt(creditsField.getText());
                 assert selectedClient != null;
@@ -56,17 +55,21 @@ public class MainWindow implements Subscriber {
         }
 
 
-        JComboBox<Ticket> ticketComboBox = new JComboBox<>();
-        for(Ticket t : this.selectedFlight.getTicketTypes()){
+        JComboBox<TicketType> ticketComboBox = new JComboBox<>();
+        for(TicketType t : this.selectedFlight.getTicketTypes()){
             ticketComboBox.addItem(t);
         }
 
         flightComboBox.addActionListener(e -> {
             selectedFlight = (Flight) flightComboBox.getSelectedItem();
+            ticketComboBox.removeAllItems();
+            for(TicketType t : this.selectedFlight.getTicketTypes()){
+                ticketComboBox.addItem(t);
+            }
         });
 
         ticketComboBox.addActionListener(e -> {
-            selectedTicket = (Ticket) ticketComboBox.getSelectedItem();
+            selectedTicket = (TicketType) ticketComboBox.getSelectedItem();
         });
 
         JButton bookCashButton = new JButton("Book (cash)");
@@ -134,10 +137,6 @@ public class MainWindow implements Subscriber {
         frame.setVisible(true);
     }
 
-    @Override
-    public void update(Publisher publisher) {
-        // Handle updates if needed
-    }
 
     public void setVisible(boolean value) {
         frame.setVisible(value);
