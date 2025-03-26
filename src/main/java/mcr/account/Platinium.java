@@ -1,6 +1,7 @@
 package mcr.account;
 
 public class Platinium extends AccountState {
+    boolean permanent = false;
     public Platinium(Account account) {
         super(account);
         this.mileCoeff = 1;
@@ -8,9 +9,6 @@ public class Platinium extends AccountState {
 
     @Override
     public void setMiles(double miles) {
-        if(miles < 10000){
-            this.getAccount().setState(new Gold(this.getAccount()));
-            this.getAccount().getClient().notifySubscribers();
-        }
+        if(miles < 10000) setAccountState(new Gold(this.getAccount()));
     }
 }

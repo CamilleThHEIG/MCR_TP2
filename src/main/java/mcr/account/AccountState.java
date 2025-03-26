@@ -11,6 +11,11 @@ public abstract class AccountState {
         return account;
     }
 
+    protected void setAccountState(AccountState c) {
+        this.getAccount().setState(c);
+        this.getAccount().getClient().notifySubscribers();
+    }
+
     public double getMileCoeff(){
         return mileCoeff;
     }
