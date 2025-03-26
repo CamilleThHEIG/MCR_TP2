@@ -9,6 +9,12 @@ public class Platinium extends AccountState {
 
     @Override
     public void setMiles(double miles) {
+        if(permanent)
+            return;
+        if(this.getAccount().getCredit() > 100000){
+            permanent = true;
+            return;
+        }
         if(miles < 10000) setAccountState(new Gold(this.getAccount()));
     }
 }
