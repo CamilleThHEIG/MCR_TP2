@@ -20,11 +20,4 @@ public enum TicketType {
         return milesCoeff;
     }
 
-    public double getFinalPrice(double basePrice){
-        return basePrice*priceCoeff;
-    }
-
-    public String toString(double basePrice){
-        return this.name() + " " + getFinalPrice(basePrice);
-    }
 }

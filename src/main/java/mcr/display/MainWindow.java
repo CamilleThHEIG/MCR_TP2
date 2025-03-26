@@ -1,6 +1,7 @@
 package mcr.display;
 
 import mcr.Flight;
+import mcr.Ticket;
 import mcr.TicketType;
 import mcr.account.Client;
 
@@ -10,15 +11,15 @@ import java.util.LinkedList;
 public class MainWindow {
     private final JFrame frame;
     private Flight selectedFlight;
-    private TicketType selectedTicket;
+    private Ticket selectedTicket;
     private Client selectedClient;
 
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
         this.selectedFlight = flights.getFirst();
         this.selectedClient = clients.getFirst();
+        this.selectedTicket = this.selectedFlight.getTickets().get(0);
         frame = new JFrame();
         frame.setTitle("Clients manager");
-
         JLabel clientLabel = new JLabel("Client");
         JComboBox<Client> clientComboBox = new JComboBox<>();
         for (Client client : clients) {
@@ -54,22 +55,21 @@ public class MainWindow {
             flightComboBox.addItem(flight);
         }
 
-
-        JComboBox<TicketType> ticketComboBox = new JComboBox<>();
-        for(TicketType t : this.selectedFlight.getTicketTypes()){
+        JComboBox<Ticket> ticketComboBox = new JComboBox<>();
+        for(Ticket t : this.selectedFlight.getTickets()){
             ticketComboBox.addItem(t);
         }
 
         flightComboBox.addActionListener(e -> {
             selectedFlight = (Flight) flightComboBox.getSelectedItem();
             ticketComboBox.removeAllItems();
-            for(TicketType t : this.selectedFlight.getTicketTypes()){
+            for(Ticket t : this.selectedFlight.getTickets()){
                 ticketComboBox.addItem(t);
             }
         });
 
         ticketComboBox.addActionListener(e -> {
-            selectedTicket = (TicketType) ticketComboBox.getSelectedItem();
+            selectedTicket = (Ticket) ticketComboBox.getSelectedItem();
         });
 
         JButton bookCashButton = new JButton("Book (cash)");
@@ -86,7 +86,7 @@ public class MainWindow {
         bookMilesButton.addActionListener(e -> {
             Client selectedClient = (Client) clientComboBox.getSelectedItem();
             if (selectedClient != null && selectedFlight != null && selectedTicket != null) {
-                //selectedClient.bookWithMiles(selectedFlight, selectedTicket);
+                selectedClient.bookWithMiles(selectedFlight, selectedTicket);
             } else {
                 JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }

@@ -9,7 +9,15 @@ public class Ticket {
         this.ticketType = ticketType;
     }
 
+    public double getFinalPrice() {
+        return basePrice * ticketType.getPriceCoeff();
+    }
+
+    public TicketType getTicketType() {
+        return ticketType;
+    }
+
     public String toString(){
-        return ticketType.toString() + " " + ticketType.getFinalPrice(basePrice);
+        return ticketType.toString() + " " + this.getFinalPrice();
     }
 }

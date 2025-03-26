@@ -2,6 +2,7 @@ package mcr.account;
 
 import mcr.Flight;
 import mcr.Subscriber;
+import mcr.Ticket;
 import mcr.TicketType;
 
 import java.util.LinkedList;
@@ -39,23 +40,24 @@ public class Client implements Publisher{
         return lastAction;
     }
 
-    public void bookWithCredits(Flight flight, TicketType ticket) {
-        double cost = flight.getTicketBasePrice() * ticket.getPriceCoeff();
+    public void bookWithCredits(Flight flight, Ticket ticket) {
+        double cost = ticket.getFinalPrice();
         if (this.account.getCredit() >= cost) {
             this.account.addCredit(cost * -1) ;
-            this.account.setMiles(this.account.getMiles() + flight.getDistance() * ticket.getMilesCoeff());
-            this.lastAction = "Booked " + flight + " class (credits)";
+            this.account.setMiles(this.account.getMiles() + flight.getDistance() * this.account.getState().getMileCoeff());
+            this.lastAction = "Booked " + flight + " in "+ ticket + " class using credits";
             this.notifySubscribers();
         } else {
             this.lastAction = "Not enough credits to book " + flight;
         }
     }
 
-    public void bookWithMiles(Flight flight, TicketType ticket) {
-        double cost = 0;//flight.getDistance() * this.account.getState().;
-        if (this.account.getCredit() >= cost) {
-            this.account.addCredit(cost * -1) ;
-            this.account.setMiles(this.account.getMiles() + flight.getDistance() * ticket.getMilesCoeff());
+    public void bookWithMiles(Flight flight, Ticket ticket) {
+        double cost = flight.getDistance() * ticket.getTicketType().getMilesCoeff();
+        if (this.account.getMiles() >= cost) {
+            this.account.setMiles(this.account.getMiles() - cost);
+            this.lastAction = "Booked " + flight + " in "+ ticket + " class using miles";
+            this.notifySubscribers();
         }
     }
 

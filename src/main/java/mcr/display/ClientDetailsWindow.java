@@ -53,7 +53,7 @@ public class ClientDetailsWindow implements Subscriber {
         statusValueLabel.setBounds(120, 140, 200, 20);
 
         lastActionLabel.setBounds(20, 170, 80, 20);
-        lastActionValueLabel.setBounds(120, 170, 250, 40);
+        lastActionValueLabel.setBounds(120, 170, 600, 40);
 
         frame.add(lastNameLabel);
         frame.add(lastNameValueLabel);
@@ -77,12 +77,10 @@ public class ClientDetailsWindow implements Subscriber {
     public void update(Publisher publisher) {
         if (publisher instanceof Client) {
             Client updatedClient = (Client) publisher;
-            SwingUtilities.invokeLater(() -> {
-                creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));
-                nbMilesValueLabel.setText(String.valueOf(updatedClient.getMiles()));
-                statusValueLabel.setText(updatedClient.getAccount().getAccountType());
-                lastActionValueLabel.setText(updatedClient.getLastAction());
-            });
+            creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));
+            nbMilesValueLabel.setText(String.valueOf(updatedClient.getMiles()));
+            statusValueLabel.setText(updatedClient.getAccount().getAccountType());
+            lastActionValueLabel.setText(updatedClient.getLastAction());
         }
     }
 
