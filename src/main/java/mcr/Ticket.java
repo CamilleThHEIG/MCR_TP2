@@ -23,4 +23,8 @@ public enum Ticket {
     public double getFinalPrice(double basePrice){
         return basePrice*priceCoeff;
     }
+
+    public String toString(double basePrice){
+        return this.name() + " " + getFinalPrice(basePrice);
+    }
 }

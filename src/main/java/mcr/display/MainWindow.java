@@ -1,17 +1,18 @@
-package mcr;
+package mcr.display;
 
+import mcr.Flight;
+import mcr.Subscriber;
+import mcr.Ticket;
 import mcr.account.Client;
 import mcr.account.Publisher;
-import mcr.display.ClientDetailsWindow;
 
 import javax.swing.*;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class MainWindow implements Subscriber {
     private final JFrame frame;
     private Flight selectedFlight;
-    private Ticket selectedTicketClass;
+    private Ticket selectedTicket;
 
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
         this.selectedFlight = flights.getFirst();
@@ -40,37 +41,39 @@ public class MainWindow implements Subscriber {
             Client selectedClient = (Client) clientComboBox.getSelectedItem();
             try {
                 int amount = Integer.parseInt(creditsField.getText());
+                assert selectedClient != null;
                 selectedClient.addCredit(amount);
                 creditsField.setText("");
-            } catch (NumberFormatException ex) {
+            } catch (NumberFormatException exception) {
                 JOptionPane.showMessageDialog(frame, "Please enter a valid number");
             }
         });
-
         JLabel flightLabel = new JLabel("Flight");
+
         JComboBox<Flight> flightComboBox = new JComboBox<>();
         for (Flight flight : flights) {
             flightComboBox.addItem(flight);
         }
 
-        JComboBox<String> flightClassComboBox = new JComboBox<>();
-        updateTicketClassesComboBox(flightComboBox, flightClassComboBox);
+
+        JComboBox<Ticket> ticketComboBox = new JComboBox<>();
+        for(Ticket t : this.selectedFlight.getTicketTypes()){
+            ticketComboBox.addItem(t);
+        }
 
         flightComboBox.addActionListener(e -> {
             selectedFlight = (Flight) flightComboBox.getSelectedItem();
-            updateTicketClassesComboBox(flightComboBox, flightClassComboBox);
         });
 
-        flightClassComboBox.addActionListener(e -> {
-            String selected = (String) flightClassComboBox.getSelectedItem();
-            selectedTicketClass = parseTicket(selected);
+        ticketComboBox.addActionListener(e -> {
+            selectedTicket = (Ticket) ticketComboBox.getSelectedItem();
         });
 
         JButton bookCashButton = new JButton("Book (cash)");
         bookCashButton.addActionListener(e -> {
             Client selectedClient = (Client) clientComboBox.getSelectedItem();
-            if (selectedClient != null && selectedFlight != null && selectedTicketClass != null) {
-                selectedClient.bookWithCredits(selectedFlight, selectedTicketClass);
+            if (selectedClient != null && selectedFlight != null && selectedTicket != null) {
+                selectedClient.bookWithCredits(selectedFlight, selectedTicket);
             } else {
                 JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }
@@ -79,15 +82,15 @@ public class MainWindow implements Subscriber {
         JButton bookMilesButton = new JButton("Book (miles)");
         bookMilesButton.addActionListener(e -> {
             Client selectedClient = (Client) clientComboBox.getSelectedItem();
-            if (selectedClient != null && selectedFlight != null && selectedTicketClass != null) {
-                //selectedClient.bookWithMiles(selectedFlight, selectedTicketClass);
+            if (selectedClient != null && selectedFlight != null && selectedTicket != null) {
+                //selectedClient.bookWithMiles(selectedFlight, selectedTicket);
             } else {
                 JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }
         });
 
         JButton statusButton = new JButton("Statuses");
-        //statusButton.addActionListener(e -> new StatusesWindow(clients));
+        statusButton.addActionListener(e -> new StatusesWindow(clients));
 
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> frame.dispose());
@@ -102,7 +105,7 @@ public class MainWindow implements Subscriber {
 
         flightLabel.setBounds(20, 150, 50, 30);
         flightComboBox.setBounds(80, 150, 135, 30);
-        flightClassComboBox.setBounds(235, 150, 120, 30);
+        ticketComboBox.setBounds(235, 150, 120, 30);
         bookCashButton.setBounds(365, 150, 120, 30);
         bookMilesButton.setBounds(500, 150, 120, 30);
 
@@ -119,7 +122,7 @@ public class MainWindow implements Subscriber {
 
         frame.add(flightLabel);
         frame.add(flightComboBox);
-        frame.add(flightClassComboBox);
+        frame.add(ticketComboBox);
         frame.add(bookCashButton);
         frame.add(bookMilesButton);
 
@@ -129,23 +132,6 @@ public class MainWindow implements Subscriber {
         frame.setSize(700, 350);
         frame.setLayout(null);
         frame.setVisible(true);
-    }
-
-    private void updateTicketClassesComboBox(JComboBox<Flight> flightComboBox, JComboBox<String> classComboBox) {
-        classComboBox.removeAllItems();
-        Flight flight = (Flight) flightComboBox.getSelectedItem();
-        if (flight != null) {
-            for (Map.Entry<Ticket, Double> entry : flight.getTicketsPrice().entrySet()) {
-                classComboBox.addItem(entry.getKey().toString() + " - $" + entry.getValue());
-            }
-        }
-    }
-
-    private Ticket parseTicket(String classString) {
-        if (classString.contains("Economy")) return Ticket.Economy;
-        if (classString.contains("Business")) return Ticket.Business;
-        if (classString.contains("First")) return Ticket.First;
-        return null;
     }
 
     @Override
