@@ -22,6 +22,10 @@ public class Flight {
         return ticketPrice;
     }
 
+    public List<Ticket> getTicketTypes() {
+        return ticketTypes;
+    }
+
     public Map<Ticket, Double> getTicketsPrice(){
         Map<Ticket, Double> map = new HashMap<>();
         for(Ticket t : ticketTypes){
