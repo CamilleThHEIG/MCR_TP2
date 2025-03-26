@@ -3,6 +3,7 @@ package mcr.account;
 public class Gold extends AccountState {
     public Gold(Account account) {
         super(account);
+        this.mileCoeff = 0.5;
     }
 
     @Override

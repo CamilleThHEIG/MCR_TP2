@@ -3,6 +3,7 @@ package mcr.account;
 public class Platinium extends AccountState {
     public Platinium(Account account) {
         super(account);
+        this.mileCoeff = 1;
     }
 
     @Override

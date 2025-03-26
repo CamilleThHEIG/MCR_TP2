@@ -2,7 +2,7 @@ package mcr.account;
 
 import mcr.Flight;
 import mcr.Subscriber;
-import mcr.Ticket;
+import mcr.TicketType;
 
 import java.util.LinkedList;
 
@@ -39,7 +39,7 @@ public class Client implements Publisher{
         return lastAction;
     }
 
-    public void bookWithCredits(Flight flight, Ticket ticket) {
+    public void bookWithCredits(Flight flight, TicketType ticket) {
         double cost = flight.getTicketBasePrice() * ticket.getPriceCoeff();
         if (this.account.getCredit() >= cost) {
             this.account.addCredit(cost * -1) ;
@@ -51,8 +51,8 @@ public class Client implements Publisher{
         }
     }
 
-    public void bookWithMiles(Flight flight, Ticket ticket) {
-        double cost = flight.getTicketBasePrice() * ticket.getPriceCoeff();
+    public void bookWithMiles(Flight flight, TicketType ticket) {
+        double cost = 0;//flight.getDistance() * this.account.getState().;
         if (this.account.getCredit() >= cost) {
             this.account.addCredit(cost * -1) ;
             this.account.setMiles(this.account.getMiles() + flight.getDistance() * ticket.getMilesCoeff());

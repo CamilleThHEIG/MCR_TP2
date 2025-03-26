@@ -36,6 +36,10 @@ public class Account{
         this.state = state;
     }
 
+    public AccountState getState(){
+        return state;
+    }
+
     public String getAccountType(){
         return this.state.getClass().getSimpleName();
     }

@@ -2,6 +2,7 @@ package mcr.account;
 
 public abstract class AccountState {
     private final Account account;  //TODO not sure about final
+    protected double mileCoeff;
     public AccountState(Account account){
         this.account = account;
     }
@@ -9,6 +10,7 @@ public abstract class AccountState {
     protected Account getAccount(){
         return account;
     }
+
 
     // TODO these three can be even more factorized if I'm not wrong
     protected void setAccountStateToSilver(){
@@ -21,8 +23,12 @@ public abstract class AccountState {
         this.getAccount().getClient().notifySubscribers();
     }
 
-    protected void setAccountStateToPlatinum(){
+    protected void setAccountStateToPlatinum() {
         this.getAccount().setState(new Platinium(this.getAccount()));
         this.getAccount().getClient().notifySubscribers();
+    }
+    
+    public double getMileCoeff(){
+        return mileCoeff;
     }
 }
