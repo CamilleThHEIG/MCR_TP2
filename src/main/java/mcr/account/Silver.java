@@ -1,17 +1,15 @@
 package mcr.account;
 
-public class Silver implements AccountState {
-    private Account account;
-
+public class Silver extends AccountState {
     public Silver(Account account) {
-        this.account = account;
+        super(account);
     }
 
     @Override
     public void setMiles(double miles) {
         if(miles > 1000){
-            account.setState(new Gold(account));
-            this.account.getClient().notifySubscribers();
+            getAccount().setState(new Gold(getAccount()));
+            this.getAccount().getClient().notifySubscribers();
         }
     }
 }

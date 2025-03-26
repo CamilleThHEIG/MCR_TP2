@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class MainWindow implements Subscriber {
-    private JFrame frame;
+    private final JFrame frame;
     private Flight selectedFlight;
     private Ticket selectedTicketClass;
 

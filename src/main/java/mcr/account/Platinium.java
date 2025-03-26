@@ -1,17 +1,15 @@
 package mcr.account;
 
-public class Platinium implements AccountState {
-    private Account account;
-
+public class Platinium extends AccountState {
     public Platinium(Account account) {
-        this.account = account;
+        super(account);
     }
 
     @Override
     public void setMiles(double miles) {
         if(miles < 10000){
-            this.account.setState(new Gold(this.account));
-            this.account.getClient().notifySubscribers();
+            this.getAccount().setState(new Gold(this.getAccount()));
+            this.getAccount().getClient().notifySubscribers();
         }
     }
 }

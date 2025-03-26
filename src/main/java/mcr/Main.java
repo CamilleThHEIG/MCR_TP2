@@ -1,9 +1,6 @@
 package mcr;
 
-import mcr.MainWindow;
 import mcr.account.Client;
-import mcr.display.ClientDetailsWindow;
-
 import java.util.LinkedList;
 
 public class Main {
@@ -18,8 +15,6 @@ public class Main {
         clients.add(new Client("Alice", "Dylan"));
         flights.add(new Flight("a-310",200,50,tickets));
         flights.add(new Flight("a-320",200,70,tickets));
-
-
 
         MainWindow w = new MainWindow(clients, flights);
 

@@ -8,9 +8,9 @@ import java.util.LinkedList;
 
 public class Client implements Publisher{
     private String lastAction;
-    private String firstName;
-    private String lastName;
-    private int id;
+    private final String firstName;
+    private final String lastName;
+    private final int id;
     private static int idCounter = 0;
     private Account account;
     private LinkedList<Subscriber> subscribers = new LinkedList<>();
