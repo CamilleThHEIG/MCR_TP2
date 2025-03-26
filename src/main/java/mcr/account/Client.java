@@ -6,7 +6,7 @@ import mcr.TicketType;
 
 import java.util.LinkedList;
 
-public class Client implements Publisher{
+public class Client implements Publisher {
     private String lastAction;
     private final String firstName;
     private final String lastName;

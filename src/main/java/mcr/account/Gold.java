@@ -8,10 +8,7 @@ public class Gold extends AccountState {
 
     @Override
     public void setMiles(double miles) {
-        if (miles < 1000){
-            setAccountStateToSilver();
-        } else if(miles > 10000){
-            setAccountStateToPlatinum();
-        }
+        if (miles < 1000) setAccountState(new Silver(this.getAccount()));
+        else if(miles > 10000) setAccountState(new Platinium(this.getAccount()));
     }
 }
