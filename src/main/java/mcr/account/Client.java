@@ -13,9 +13,14 @@ public class Client implements Publisher {
     private final String lastName;
     private final int id;
     private static int idCounter = 0;
-    private Account account;
-    private LinkedList<Subscriber> subscribers = new LinkedList<>();
+    private final Account account;
+    private final LinkedList<Subscriber> subscribers = new LinkedList<>();
 
+    /**
+     * Constructor for client. Client is is automatically granted a client id
+     * @param firstName first name of the client
+     * @param lastName last name of the client
+     */
     public Client(String firstName, String lastName) {
         this.account = new Account(this);
         this.firstName = firstName;
@@ -23,10 +28,18 @@ public class Client implements Publisher {
         this.id = ++idCounter;
     }
 
+    /**
+     * Gets the account of the client
+     * @return reference to the account of the client
+     */
     public Account getAccount() {
         return account;
     }
 
+    /**
+     * toString method for the client
+     * @return string containing the client's information
+     */
     public String toString() {
         return firstName + " " + lastName;
     }
@@ -39,6 +52,9 @@ public class Client implements Publisher {
     public String getLastAction(){
         return lastAction;
     }
+
+
+    // TODO factorize the two book methods ?
 
     public void bookWithCredits(Flight flight, Ticket ticket) {
         double cost = ticket.getFinalPrice();
@@ -61,6 +77,10 @@ public class Client implements Publisher {
         }
     }
 
+    /**
+     * Adds a subscriber the list of subscribers.
+     * @param subscriber the subscriber to subscriber
+     */
     @Override
     public void subscribe(Subscriber subscriber) {
         this.subscribers.add(subscriber);
@@ -71,6 +91,9 @@ public class Client implements Publisher {
         this.subscribers.remove(subscriber);
     }
 
+    /**
+     * Notifies every subscriber from changes in the client.
+     */
     @Override
     public void notifySubscribers() {
         for (Subscriber subscriber : subscribers) {
@@ -78,22 +101,41 @@ public class Client implements Publisher {
         }
     }
 
+    /**
+     * Gets the id of the client.
+     * @return the id of the client.
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * Gets the last name of the client
+     * @return the last name of the client.
+     */
     public String getLastName() {
         return this.lastName;
     }
 
+    /**
+     * Gets the first name of the client
+     * @return the first name of the client.
+     */
     public String getFirstName() {
         return this.firstName;
     }
 
+    /**
+     * Gets the amount of credits from the client's account.
+     * @return the client's credits.
+     */
     public double getCredit(){
         return this.account.getCredit();
     }
-
+    /**
+     * Gets the amount of miles from the client's account.
+     * @return the client's miles.
+     */
     public double getMiles(){
         return this.account.getMiles();
     }

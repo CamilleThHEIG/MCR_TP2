@@ -5,8 +5,9 @@ public enum TicketType {
     Business(2,5),
     First(5,30);
 
-    private double priceCoeff;
-    private double milesCoeff;
+    private final double priceCoeff;
+    private final double milesCoeff;
+
     TicketType(double priceCoeff, double milesCoeff) {
         this.priceCoeff = priceCoeff;
         this.milesCoeff = milesCoeff;

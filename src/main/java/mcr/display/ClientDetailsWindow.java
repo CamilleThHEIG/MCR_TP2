@@ -75,7 +75,7 @@ public class ClientDetailsWindow implements Subscriber {
 
     @Override
     public void update(Publisher publisher) {
-        if (publisher instanceof Client) {
+        if (publisher instanceof Client) {  // TODO is there no other choice ?
             Client updatedClient = (Client) publisher;
             creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));
             nbMilesValueLabel.setText(String.valueOf(updatedClient.getMiles()));
@@ -85,6 +85,7 @@ public class ClientDetailsWindow implements Subscriber {
     }
 
     public void close() {
+        System.out.println("Window closing");
         client.unsubscribe(this); // Se désabonne lors de la fermeture
         frame.dispose();
     }
