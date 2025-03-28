@@ -8,6 +8,11 @@ public interface Publisher {
      * @param subscriber the subscriber to subscriber
      */
     void subscribe(Subscriber subscriber);
+
+    /**
+     * Should unsubscribe a subscriber to the publisher
+     * @param subscriber
+     */
     void unsubscribe(Subscriber subscriber);
 
     /**

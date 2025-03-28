@@ -3,6 +3,9 @@ package mcr;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Flight class. Instances we contain information from a flight.
+ */
 public class Flight {
     private final String name;
     private final int distance;

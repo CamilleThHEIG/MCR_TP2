@@ -7,6 +7,9 @@ import mcr.TicketType;
 
 import java.util.LinkedList;
 
+/**
+ * Client class. Clients are publishers and will notify the Windows when relevant information changes.
+ */
 public class Client implements Publisher {
     private String lastAction;
     private final String firstName;
@@ -17,7 +20,7 @@ public class Client implements Publisher {
     private final LinkedList<Subscriber> subscribers = new LinkedList<>();
 
     /**
-     * Constructor for client. Client is is automatically granted a client id
+     * Constructor for client. Client it is automatically granted a client id
      * @param firstName first name of the client
      * @param lastName last name of the client
      */
@@ -49,6 +52,10 @@ public class Client implements Publisher {
         this.notifySubscribers();
     }
 
+    /**
+     * Gets the client's last action String.
+     * @return
+     */
     public String getLastAction(){
         return lastAction;
     }
@@ -123,6 +130,14 @@ public class Client implements Publisher {
      */
     public String getFirstName() {
         return this.firstName;
+    }
+
+    /**
+     * Gets the full name of a client, meaning it's first name and it's last name together
+     * @return the full name of the client.
+     */
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
     }
 
     /**
