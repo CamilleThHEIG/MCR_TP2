@@ -1,5 +1,9 @@
 package mcr.account;
 
+
+/**
+ * Class that represents the Platinum state for an account
+ */
 public class Platinium extends AccountState {
     boolean permanent = false;
     public Platinium(Account account) {
@@ -7,6 +11,11 @@ public class Platinium extends AccountState {
         this.mileCoeff = 1;
     }
 
+    /**
+     * Sets the miles of the account
+     * @param miles number of miles to set
+     */
+    // TODO ??
     @Override
     public void setMiles(double miles) {
         if(permanent)

@@ -1,5 +1,9 @@
 package mcr.account;
 
+
+/**
+ * Class that represents the Gold state for an account
+ */
 public class Gold extends AccountState {
     public Gold(Account account) {
         super(account);

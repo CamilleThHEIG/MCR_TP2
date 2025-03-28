@@ -1,5 +1,8 @@
 package mcr.account;
 
+/**
+ * Class that represents the Silver state for an account
+ */
 public class Silver extends AccountState {
     public Silver(Account account) {
         super(account);
