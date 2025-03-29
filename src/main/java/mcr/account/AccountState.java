@@ -19,4 +19,6 @@ public abstract class AccountState {
     public double getMileCoeff(){
         return mileCoeff;
     }
+
+    abstract public String toString();
 }

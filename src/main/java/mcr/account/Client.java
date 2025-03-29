@@ -47,6 +47,10 @@ public class Client implements Publisher {
         return firstName + " " + lastName;
     }
 
+    /**
+     * Adds some credit to the client. This will notify the subscribers.
+     * @param credit credit to be added to the client's account.
+     */
     public void addCredit(int credit){
         this.account.addCredit(credit);
         this.notifySubscribers();
@@ -54,7 +58,7 @@ public class Client implements Publisher {
 
     /**
      * Gets the client's last action String.
-     * @return
+     * @return the client's last action String
      */
     public String getLastAction(){
         return lastAction;

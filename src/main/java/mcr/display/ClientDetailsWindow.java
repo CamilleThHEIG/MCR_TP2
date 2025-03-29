@@ -84,6 +84,7 @@ public class ClientDetailsWindow implements Subscriber {
         }
     }
 
+    //TODO this is not used, so remove ?
     public void close() {
         System.out.println("Window closing");
         client.unsubscribe(this); // Se désabonne lors de la fermeture

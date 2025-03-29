@@ -98,6 +98,8 @@ public class MainWindow {
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> frame.dispose());
 
+        // Setting the bounds of the elements
+
         clientLabel.setBounds(50, 50, 80, 30);
         clientComboBox.setBounds(100, 50, 130, 30);
         detailsButton.setBounds(240, 50, 100, 30);
@@ -114,6 +116,8 @@ public class MainWindow {
 
         statusButton.setBounds(20, 200, 100, 30);
         quitButton.setBounds(130, 200, 80, 30);
+
+        // Adding everything to the window frame
 
         frame.add(clientLabel);
         frame.add(clientComboBox);

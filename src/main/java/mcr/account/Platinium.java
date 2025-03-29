@@ -15,15 +15,16 @@ public class Platinium extends AccountState {
      * Sets the miles of the account
      * @param miles number of miles to set
      */
-    // TODO ??
     @Override
     public void setMiles(double miles) {
-        if(permanent)
+        if (permanent)
             return;
-        if(this.getAccount().getCredit() > 100000){
+        if (this.getAccount().getCredit() > 100000){
             permanent = true;
             return;
         }
         if(miles < 10000) setAccountState(new Gold(this.getAccount()));
     }
+
+    public String toString(){return "PLATINUM";}
 }
