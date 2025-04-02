@@ -75,6 +75,7 @@ public class ClientDetailsWindow implements Subscriber {
 
     @Override
     public void update(Publisher publisher) {
+        // TODO handle exceptions
         if (publisher instanceof Client) {  // TODO is there no other choice ?
             Client updatedClient = (Client) publisher;
             creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));

@@ -23,11 +23,11 @@ public class StatusesWindow implements Subscriber {
 
             switch (client.getAccount().getAccountStatus()){
                 case AccountStatus.SILVER:
-                    clientLabel.setForeground(Color.gray);
+                    clientLabel.setForeground(Color.GRAY); break;
                 case AccountStatus.GOLD:
-                    clientLabel.setForeground(Color.YELLOW);
+                    clientLabel.setForeground(Color.YELLOW); break;
                 case AccountStatus.PLATINIUM:
-                    clientLabel.setForeground(Color.CYAN);
+                    clientLabel.setForeground(Color.CYAN); break;
             }
 
             frame.add(clientLabel);
@@ -44,11 +44,7 @@ public class StatusesWindow implements Subscriber {
     public void update(Publisher publisher) {
         if (publisher instanceof Client) {
             // TODO is there no other choice ?
-            Client updatedClient = (Client) publisher;
-            creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));
-            nbMilesValueLabel.setText(String.valueOf(updatedClient.getMiles()));
-            statusValueLabel.setText(String.valueOf(updatedClient.getAccount().getAccountStatus()));
-            lastActionValueLabel.setText(updatedClient.getLastAction());
+
         }
     }
 }
