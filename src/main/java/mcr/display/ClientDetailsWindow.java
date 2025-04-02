@@ -34,7 +34,7 @@ public class ClientDetailsWindow implements Subscriber {
         firstNameValueLabel = new JLabel(client.getFirstName());
         creditsValueLabel = new JLabel(String.valueOf(client.getCredit()));
         nbMilesValueLabel = new JLabel(String.valueOf(client.getMiles()));
-        statusValueLabel = new JLabel(client.getAccount().getAccountType());
+        statusValueLabel = new JLabel(String.valueOf(client.getAccount().getAccountStatus()));
         lastActionValueLabel = new JLabel(client.getLastAction());
 
         lastNameLabel.setBounds(20, 20, 80, 20);
@@ -79,7 +79,7 @@ public class ClientDetailsWindow implements Subscriber {
             Client updatedClient = (Client) publisher;
             creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));
             nbMilesValueLabel.setText(String.valueOf(updatedClient.getMiles()));
-            statusValueLabel.setText(updatedClient.getAccount().getAccountType());
+            statusValueLabel.setText(String.valueOf(updatedClient.getAccount().getAccountStatus()));
             lastActionValueLabel.setText(updatedClient.getLastAction());
         }
     }

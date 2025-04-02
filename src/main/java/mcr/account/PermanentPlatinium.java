@@ -11,9 +11,9 @@ public class PermanentPlatinium extends AccountState{
 
     }
 
+
     @Override
-    public String getAccountType() {
-        return "PLATINIUM";
+    public AccountStatus getStatus() {
+        return AccountStatus.PLATINIUM;
     }
-    
 }

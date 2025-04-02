@@ -27,5 +27,8 @@ public class Platinium extends AccountState {
 
     }
 
-    public String getAccountType(){return "PLATINUM";}
+    @Override
+    public AccountStatus getStatus() {
+        return AccountStatus.PLATINIUM;
+    }
 }

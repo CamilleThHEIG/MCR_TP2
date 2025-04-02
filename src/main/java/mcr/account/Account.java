@@ -70,11 +70,9 @@ public class Account{
         return state;
     }
 
-    /**
-     * Gets the name of the current account state
-     * @return the account type name
-     */
-    public String getAccountType(){
-        return this.state.getAccountType();
+
+
+    public AccountStatus getAccountStatus(){
+        return this.state.getStatus();
     }
 }

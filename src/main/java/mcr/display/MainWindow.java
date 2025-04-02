@@ -15,7 +15,7 @@ public class MainWindow {
     private Client selectedClient;
 
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
-        // TODO we can slit this constructor into multiple functions
+        // TODO we can split this constructor into multiple functions
         this.selectedFlight = flights.getFirst();
         this.selectedClient = clients.getFirst();
         this.selectedTicket = this.selectedFlight.getTickets().get(0);

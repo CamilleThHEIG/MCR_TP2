@@ -4,7 +4,7 @@ public abstract class AccountState {
     private final Account account;  //TODO not sure about final
     protected double mileCoeff;
 
-    // private mystatut =
+
 
     public AccountState(Account account){
         this.account = account;
@@ -17,6 +17,9 @@ public abstract class AccountState {
         return account;
     }
 
+    public abstract AccountStatus getStatus();
+
+
     protected void setAccountState(AccountState c) {
         this.getAccount().setState(c);
         this.getAccount().getClient().notifySubscribers();
@@ -25,6 +28,4 @@ public abstract class AccountState {
     public double getMileCoeff(){
         return mileCoeff;
     }
-
-    abstract public String getAccountType();
 }
