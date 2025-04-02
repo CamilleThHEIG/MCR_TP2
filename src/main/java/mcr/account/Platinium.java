@@ -5,7 +5,6 @@ package mcr.account;
  * Class that represents the Platinum state for an account
  */
 public class Platinium extends AccountState {
-    boolean permanent = false;
     public Platinium(Account account) {
         super(account);
         this.mileCoeff = 1;
@@ -17,13 +16,15 @@ public class Platinium extends AccountState {
      */
     @Override
     public void setMiles(double miles) {
-        if (permanent)
-            return;
-        if (this.getAccount().getCredit() > 100000){
-            permanent = true;
-            return;
-        }
         if(miles < 10000) setAccountState(new Gold(this.getAccount()));
+    }
+
+
+    @Override
+    public void setCredits(int credits) {
+        if(credits > 100000)
+            setAccountState(new PermanentPlatinium(this.getAccount()));
+
     }
 
     public String toString(){return "PLATINUM";}

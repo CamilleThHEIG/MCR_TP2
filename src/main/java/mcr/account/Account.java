@@ -4,12 +4,20 @@ package mcr.account;
 public class Account{
     private AccountState state;
     private double miles;
-    private double credit;
+    private int credit;
     private final Client client;
 
     public Account(Client client){
         this.state = new Silver(this);
         this.client = client;
+    }
+
+    /**
+     * Gets the miles of the account
+     * @return the miles of the account
+     */
+    public double getMiles(){
+        return miles;
     }
 
     /**
@@ -22,19 +30,20 @@ public class Account{
     }
 
     /**
-     * Gets the miles of the account
-     * @return the miles of the account
-     */
-    public double getMiles(){
-        return miles;
-    }
-
-    /**
      * Gets the credits of the account
      * @return the credits of the account
      */
     public double getCredit(){
         return credit;
+    }
+
+    /**
+     * Adds some credits to the account
+     * @param addedCredit
+     */
+    public void addCredit(double addedCredit){
+        this.credit += addedCredit;
+        this.state.setCredits(this.credit);
     }
 
     /**
@@ -68,13 +77,5 @@ public class Account{
     public String getAccountType(){
         // TODO is getSimpleName clean enough ??
         return this.state.getClass().getSimpleName();
-    }
-
-    /**
-     * Adds some credits to the account
-     * @param addedCredit
-     */
-    public void addCredit(double addedCredit){
-        this.credit += addedCredit;
     }
 }
