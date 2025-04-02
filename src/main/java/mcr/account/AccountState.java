@@ -3,6 +3,9 @@ package mcr.account;
 public abstract class AccountState {
     private final Account account;  //TODO not sure about final
     protected double mileCoeff;
+
+    // private mystatut =
+
     public AccountState(Account account){
         this.account = account;
     }
@@ -20,5 +23,5 @@ public abstract class AccountState {
         return mileCoeff;
     }
 
-    abstract public String toString();
+    abstract public String getAccountType();
 }

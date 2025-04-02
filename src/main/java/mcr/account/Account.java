@@ -66,13 +66,12 @@ public class Account{
      * @return the account type name
      */
     public String getAccountType(){
-        // TODO is getSimpleName clean enough ??
-        return this.state.getClass().getSimpleName();
+        return this.state.getAccountType();
     }
 
     /**
      * Adds some credits to the account
-     * @param addedCredit
+     * @param addedCredit the credit to be added
      */
     public void addCredit(double addedCredit){
         this.credit += addedCredit;

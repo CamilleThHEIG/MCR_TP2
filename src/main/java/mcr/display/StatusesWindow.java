@@ -16,6 +16,10 @@ public class StatusesWindow implements Subscriber {
         for (Client client : clients){
             JLabel clientLabel = new JLabel(client.getFullName() + " " + client.getAccount().getAccountType());
             clientLabel.setBounds(20, yValue, 200, 20);
+
+
+
+
             frame.add(clientLabel);
             clientsLabels.add(clientLabel);
             yValue += 20;

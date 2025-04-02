@@ -14,5 +14,5 @@ public class Silver extends AccountState {
         if(miles > 1000) setAccountState(new Gold(this.getAccount()));
     }
 
-    public String toString(){return "SILVER";}
+    public String getAccountType(){return "SILVER";}
 }

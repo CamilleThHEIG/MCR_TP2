@@ -16,5 +16,5 @@ public class Gold extends AccountState {
         else if(miles > 10000) setAccountState(new Platinium(this.getAccount()));
     }
 
-    public String toString(){return "GOLD";}
+    public String getAccountType(){return "GOLD";}
 }
