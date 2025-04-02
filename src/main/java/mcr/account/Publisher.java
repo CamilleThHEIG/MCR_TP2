@@ -11,7 +11,7 @@ public interface Publisher {
 
     /**
      * Should unsubscribe a subscriber to the publisher
-     * @param subscriber
+     * @param subscriber the subscriber to update
      */
     void unsubscribe(Subscriber subscriber);
 

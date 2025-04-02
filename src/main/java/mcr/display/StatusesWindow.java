@@ -23,11 +23,11 @@ public class StatusesWindow implements Subscriber {
             clientLabel.setBounds(20, yValue, 200, 20);
             switch (client.getAccount().getAccountStatus()){
                 case AccountStatus.SILVER:
-                    clientLabel.setForeground(Color.gray);
+                    clientLabel.setForeground(Color.GRAY); break;
                 case AccountStatus.GOLD:
-                    clientLabel.setForeground(Color.YELLOW);
+                    clientLabel.setForeground(Color.YELLOW); break;
                 case AccountStatus.PLATINIUM:
-                    clientLabel.setForeground(Color.CYAN);
+                    clientLabel.setForeground(Color.CYAN); break;
             }
 
             frame.add(clientLabel);
@@ -46,6 +46,15 @@ public class StatusesWindow implements Subscriber {
             Client client = (Client) publisher;
             JLabel j = clientsLabels.get(client);
             j.setText(client.getFullName() + " " + client.getAccount().getAccountStatus());
+            switch (client.getAccount().getAccountStatus()){
+                case AccountStatus.SILVER:
+                    j.setForeground(Color.GRAY); break;
+                case AccountStatus.GOLD:
+                    j.setForeground(Color.YELLOW); break;
+                case AccountStatus.PLATINIUM:
+                    j.setForeground(Color.CYAN); break;
+            }
+
         }
 
 
