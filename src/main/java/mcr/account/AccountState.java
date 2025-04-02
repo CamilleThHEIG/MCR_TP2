@@ -10,6 +10,9 @@ public abstract class AccountState {
         this.account = account;
     }
     public abstract void setMiles(double miles);
+
+    public void setCredits(int credits){}
+
     protected Account getAccount(){
         return account;
     }
