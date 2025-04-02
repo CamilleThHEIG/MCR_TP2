@@ -94,7 +94,13 @@ public class MainWindow {
         });
 
         JButton statusButton = new JButton("Statuses");
-        statusButton.addActionListener(e -> new StatusesWindow(clients));
+        statusButton.addActionListener(e -> {
+            StatusesWindow sw = new StatusesWindow(clients);
+            for(Client client : clients){
+                client.subscribe(sw);
+            }
+
+        });
 
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> frame.dispose());
