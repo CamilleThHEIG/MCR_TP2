@@ -16,7 +16,6 @@ import java.util.LinkedList;
  */
 public class StatusesWindow implements Subscriber {
     private final HashMap<Client,JLabel> clientsLabels = new HashMap<>();
-    private LinkedList<Client> clients;
 
     /**
      * Creates status window
@@ -24,7 +23,6 @@ public class StatusesWindow implements Subscriber {
      */
     public StatusesWindow(LinkedList<Client> clients) {
         JFrame frame = new JFrame();
-        this.clients = clients;
         int yValue = 20;
         for (Client client : clients) {
             JLabel clientLabel = createClientLabel(client, yValue);
@@ -43,8 +41,7 @@ public class StatusesWindow implements Subscriber {
      */
     @Override
     public void update(Publisher publisher) {
-        if (publisher instanceof Client) {
-            Client client = (Client) publisher;
+        if (publisher instanceof Client client) {
             updateClientLabel(client);
         }
     }
