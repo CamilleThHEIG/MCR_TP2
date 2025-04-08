@@ -11,25 +11,19 @@ import javax.swing.*;
  * Update when client changes
  */
 public class ClientDetailsWindow implements Subscriber {
-    private JFrame frame;
-    private Client client;
-
-    private JLabel lastNameValueLabel;
-    private JLabel firstNameValueLabel;
-    private JLabel creditsValueLabel;
-    private JLabel nbMilesValueLabel;
-    private JLabel statusValueLabel;
-    private JLabel lastActionValueLabel;
+    private final JLabel creditsValueLabel;
+    private final JLabel nbMilesValueLabel;
+    private final JLabel statusValueLabel;
+    private final JLabel lastActionValueLabel;
 
     /**
      * Creates window for client.
      * @param client Client to display
      */
     public ClientDetailsWindow(Client client) {
-        this.client = client;
         client.subscribe(this);
 
-        frame = new JFrame();
+        JFrame frame = new JFrame();
         frame.setTitle("Details of client #" + client.getId());
         JLabel lastNameLabel = new JLabel("Last name:");
         JLabel firstNameLabel = new JLabel("First name:");
@@ -38,8 +32,8 @@ public class ClientDetailsWindow implements Subscriber {
         JLabel statusLabel = new JLabel("Status:");
         JLabel lastActionLabel = new JLabel("Last action:");
 
-        lastNameValueLabel = new JLabel(client.getLastName());
-        firstNameValueLabel = new JLabel(client.getFirstName());
+        JLabel lastNameValueLabel = new JLabel(client.getLastName());
+        JLabel firstNameValueLabel = new JLabel(client.getFirstName());
         creditsValueLabel = new JLabel(String.valueOf(client.getCredit()));
         nbMilesValueLabel = new JLabel(String.valueOf(client.getMiles()));
         statusValueLabel = new JLabel(String.valueOf(client.getAccount().getAccountStatus()));
@@ -87,9 +81,7 @@ public class ClientDetailsWindow implements Subscriber {
      */
     @Override
     public void update(Publisher publisher) {
-        // TODO handle exceptions
-        if (publisher instanceof Client) {  // TODO is there no other choice ?
-            Client updatedClient = (Client) publisher;
+        if (publisher instanceof Client updatedClient) {
             creditsValueLabel.setText(String.valueOf(updatedClient.getCredit()));
             nbMilesValueLabel.setText(String.valueOf(updatedClient.getMiles()));
             statusValueLabel.setText(String.valueOf(updatedClient.getAccount().getAccountStatus()));
