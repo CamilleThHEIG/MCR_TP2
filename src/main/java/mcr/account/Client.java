@@ -74,30 +74,42 @@ public class Client implements Publisher {
      * @param paymentMethod The payment method (cash, miles)
      */
     public void book(Flight flight, Ticket ticket, PaymentMethod paymentMethod){
-        double cost;
-        String successMessage;
+        double cost = 0;
+        String successMessage = "Booked ";
         boolean canPay;
-        if (paymentMethod == PaymentMethod.CREDITS) {
-            cost = ticket.getFinalPrice();
-            canPay = this.account.getCredit() >= cost;
-            successMessage = "Booked " + flight + " in " + ticket + " class using credits";
-        } else {
-            cost = flight.getDistance() * ticket.getTicketType().getMilesCoeff();
-            canPay = this.account.getMiles() >= cost;
-            successMessage = "Booked " + flight + " in " + ticket + " class using miles";
+        switch (paymentMethod){
+            case CREDITS:
+                cost = ticket.getFinalPrice();
+                canPay = this.account.getCredit() >= cost;
+                successMessage += flight + " in " + ticket + " class using credits";
+                break;
+            case MILES:
+                cost = flight.getDistance() * ticket.getTicketType().getMilesCoeff();
+                canPay = this.account.getMiles() >= cost;
+                successMessage += flight + " in " + ticket + " class using miles";
+                break;
+            default:
+                canPay = false;
+                break;
         }
-        if (canPay) {
-            if (paymentMethod == PaymentMethod.CREDITS) {
+
+        if(!canPay)
+        {
+            this.lastAction = "Not enough " + paymentMethod.toString().toLowerCase() + " to book " + flight;
+            return;
+        }
+
+        switch (paymentMethod){
+            case CREDITS:
                 this.account.addCredit(cost * -1);
                 this.account.setMiles(this.account.getMiles() + flight.getDistance() * this.account.getState().getMileCoeff());
-            } else {
+                break;
+            case MILES:
                 this.account.setMiles(this.account.getMiles() - cost);
-            }
-            this.lastAction = successMessage;
-            this.notifySubscribers();
-        } else {
-            this.lastAction = "Not enough " + paymentMethod.toString().toLowerCase() + " to book " + flight;
+                break;
         }
+        this.lastAction = successMessage;
+        this.notifySubscribers();
     }
 
     /**
