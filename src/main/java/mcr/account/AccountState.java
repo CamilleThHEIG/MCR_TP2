@@ -15,6 +15,8 @@ public abstract class AccountState {
     public AccountState(Account account){
         this.account = account;
     }
+
+
     public abstract void checkForNewStateWithMiles(double miles);
 
     public void checkForPermanentPlatiniumUpgrade(int credits){}
@@ -24,8 +26,7 @@ public abstract class AccountState {
     }
 
     public abstract AccountStatus getStatus();
-
-
+    
     protected void setAccountState(AccountState c) {
         this.getAccount().setState(c);
         this.getAccount().getClient().notifySubscribers();
