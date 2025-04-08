@@ -3,7 +3,6 @@ package mcr.account;
 import mcr.Flight;
 import mcr.Subscriber;
 import mcr.Ticket;
-import mcr.TicketType;
 
 import java.util.LinkedList;
 
