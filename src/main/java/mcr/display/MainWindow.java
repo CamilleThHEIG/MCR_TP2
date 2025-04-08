@@ -25,7 +25,7 @@ public class MainWindow {
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
         this.selectedFlight = flights.getFirst();
         this.selectedClient = clients.getFirst();
-        this.selectedTicket = this.selectedFlight.getTickets().get(0);
+        this.selectedTicket = this.selectedFlight.getTickets().getFirst();
         frame = new JFrame();
         frame.setTitle("Clients manager");
         JLabel clientLabel = new JLabel("Client");

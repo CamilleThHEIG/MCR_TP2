@@ -34,6 +34,7 @@ public abstract class AccountState {
 
     public abstract AccountStatus getStatus();
 
+
     /**
      * Change account state and notify clients
      * @param c new state

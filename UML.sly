@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
 <classDiagram>
   <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="">
+    <entity entityType="CLASS" id="12809" isAbstract="false" name="StatusesWindow" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="clientsLabels" type="HashMap&lt;Client,JLabel&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="clients" type="LinkedList&lt;Client&gt;" visibility="PRIVATE"/>
+    </entity>
+    <entity entityType="INTERFACE" id="12524" isAbstract="true" name="Subscriber" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="publisher" type="Publisher"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="12523" isAbstract="false" name="Class" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="12082" isAbstract="false" name="ClientDetailsWindow" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="frame" type="JFrame" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="client" type="Client" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="lastNameValueLabel" type="JLabel" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="firstNameValueLabel" type="JLabel" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="creditsValueLabel" type="JLabel" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="nbMilesValueLabel" type="JLabel" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="statusValueLabel" type="JLabel" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="lastActionValueLabel" type="JLabel" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="ClientDetailsWindow" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="client" type="Client"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="publisher" type="Publisher"/>
+      </method>
+    </entity>
+    <inheritance id="12081">
+      <child>8213</child>
+      <parent>11998</parent>
+    </inheritance>
+    <entity entityType="INTERFACE" id="11998" isAbstract="true" name="Publisher" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="subscribe" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="subscriber" type="Subscriber"/>
+      </method>
+      <method isAbstract="true" isStatic="false" name="unsubscribe" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="subscriber" type="Subscriber"/>
+      </method>
+      <method isAbstract="true" isStatic="false" name="notifySubscribers" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="ENUM" id="11997" name="Enum"/>
+    <entity entityType="ENUM" id="11996" name="Enum"/>
+    <inheritance id="11979">
+      <child>11904</child>
+      <parent>7838</parent>
+    </inheritance>
+    <entity entityType="CLASS" id="11904" isAbstract="false" name="PermanentPlatinium" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="PermanentPlatinium" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="account" type="Account"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="checkForNewStateWithMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="miles" type="double"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getStatus" returnType="AccountStatus" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <association aggregation="NONE" direction="BIDIRECTIONAL" id="11780" name="">
+      <role componentId="7838" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>0</min>
+          <max>2147483647</max>
+        </multiplicity>
+      </role>
+      <role componentId="11599" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
     <entity entityType="ENUM" id="11599" name="AccountStatus">
       <EnumValue>SILVER</EnumValue>
       <EnumValue>GOLD</EnumValue>
@@ -107,25 +175,31 @@
       <method is-constructor="true" isAbstract="false" isStatic="false" name="Platinum" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="account" type="Account"/>
       </method>
-      <method isAbstract="false" isStatic="false" name="setMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="checkForNewStateWithMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="miles" type="double"/>
       </method>
+      <method isAbstract="false" isStatic="false" name="checkForPermanentPlatiniumUpgrade" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="credits" type="int"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getStatus" returnType="AccountStatus" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
     <entity entityType="CLASS" id="7835" isAbstract="false" name="Silver" visibility="PUBLIC">
       <method is-constructor="true" isAbstract="false" isStatic="false" name="Silver" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="account" type="Account"/>
       </method>
-      <method isAbstract="false" isStatic="false" name="setMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="checkForNewStateWithMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="miles" type="double"/>
       </method>
+      <method isAbstract="false" isStatic="false" name="getStatus" returnType="AccountStatus" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
     <entity entityType="CLASS" id="7834" isAbstract="false" name="Gold" visibility="PUBLIC">
       <method is-constructor="true" isAbstract="false" isStatic="false" name="Gold" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="account" type="Account"/>
       </method>
-      <method isAbstract="false" isStatic="false" name="setMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="checkForNewStateWithMiles" returnType="void" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="miles" type="double"/>
       </method>
+      <method isAbstract="false" isStatic="false" name="getStatus" returnType="AccountStatus" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
     <entity entityType="CLASS" id="7697" isAbstract="false" name="Account" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="state" type="AccountState" visibility="PRIVATE"/>
@@ -150,47 +224,56 @@
       <method isAbstract="false" isStatic="false" name="getState" returnType="AccountState" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="getAccountStatus" returnType="AccountStatus" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
-    <entity entityType="CLASS" id="7696" isAbstract="false" name="MainWindow" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="7696" isAbstract="false" name="MainWindow" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="frame" type="JFrame" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="selectedFlight" type="Flight" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="selectedTicket" type="Ticket" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="selectedClient" type="Client" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="MainWindow" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="clients" type="LinkedList&lt;Client&gt;"/>
+        <variable const="false" name="flights" type="LinkedList&lt;Flight&gt;"/>
+      </method>
+    </entity>
   </diagramElements>
   <umlView grid="10" name="Main view" open="true">
     <relationView color="-12566464" relationId="8198">
       <line>
         <point>
-          <x>1151</x>
-          <y>351</y>
+          <x>1761</x>
+          <y>321</y>
         </point>
         <point>
-          <x>1681</x>
-          <y>351</y>
+          <x>2241</x>
+          <y>361</y>
         </point>
       </line>
       <labelAssociation>
-        <x>1420</x>
-        <y>355</y>
+        <x>2005</x>
+        <y>345</y>
         <w>0</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
-        <x>1155</x>
-        <y>355</y>
+        <x>1765</x>
+        <y>325</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <roleAssociation>
-        <x>1645</x>
-        <y>355</y>
+        <x>2205</x>
+        <y>365</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>1155</x>
-        <y>329</y>
+        <x>1765</x>
+        <y>299</y>
         <w>21</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>1667</x>
-        <y>329</y>
+        <x>2227</x>
+        <y>339</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
@@ -198,41 +281,41 @@
     <relationView color="-12566464" relationId="8352">
       <line>
         <point>
-          <x>621</x>
-          <y>351</y>
+          <x>1361</x>
+          <y>321</y>
         </point>
         <point>
-          <x>911</x>
-          <y>351</y>
+          <x>1521</x>
+          <y>321</y>
         </point>
       </line>
       <labelAssociation>
-        <x>770</x>
-        <y>355</y>
+        <x>1445</x>
+        <y>325</y>
         <w>0</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
-        <x>625</x>
-        <y>355</y>
+        <x>1365</x>
+        <y>325</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <roleAssociation>
-        <x>875</x>
-        <y>355</y>
+        <x>1485</x>
+        <y>325</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>625</x>
-        <y>329</y>
+        <x>1365</x>
+        <y>299</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>897</x>
-        <y>329</y>
+        <x>1507</x>
+        <y>299</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
@@ -240,19 +323,19 @@
     <relationView color="-12566464" relationId="8195">
       <line>
         <point>
-          <x>1461</x>
-          <y>681</y>
+          <x>1631</x>
+          <y>691</y>
         </point>
         <point>
-          <x>1461</x>
-          <y>581</y>
+          <x>1631</x>
+          <y>591</y>
         </point>
         <point>
-          <x>1901</x>
-          <y>581</y>
+          <x>2401</x>
+          <y>591</y>
         </point>
         <point>
-          <x>1871</x>
+          <x>2401</x>
           <y>531</y>
         </point>
       </line>
@@ -260,19 +343,19 @@
     <relationView color="-12566464" relationId="8196">
       <line>
         <point>
-          <x>1861</x>
-          <y>681</y>
+          <x>2151</x>
+          <y>691</y>
         </point>
         <point>
-          <x>1861</x>
-          <y>581</y>
+          <x>2151</x>
+          <y>591</y>
         </point>
         <point>
-          <x>1901</x>
-          <y>581</y>
+          <x>2401</x>
+          <y>591</y>
         </point>
         <point>
-          <x>1871</x>
+          <x>2401</x>
           <y>531</y>
         </point>
       </line>
@@ -280,66 +363,140 @@
     <relationView color="-12566464" relationId="8197">
       <line>
         <point>
-          <x>2241</x>
-          <y>681</y>
+          <x>2591</x>
+          <y>691</y>
         </point>
         <point>
-          <x>2241</x>
-          <y>581</y>
+          <x>2591</x>
+          <y>591</y>
         </point>
         <point>
-          <x>1901</x>
-          <y>581</y>
+          <x>2401</x>
+          <y>591</y>
         </point>
         <point>
-          <x>1871</x>
+          <x>2401</x>
           <y>531</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="11780">
+      <line>
+        <point>
+          <x>2301</x>
+          <y>341</y>
+        </point>
+        <point>
+          <x>2301</x>
+          <y>165</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>2305</x>
+        <y>257</y>
+        <w>0</w>
+        <h>16</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>2305</x>
+        <y>319</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>2305</x>
+        <y>169</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>2274</x>
+        <y>319</y>
+        <w>21</w>
+        <h>16</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>2287</x>
+        <y>169</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="11979">
+      <line>
+        <point>
+          <x>3151</x>
+          <y>691</y>
+        </point>
+        <point>
+          <x>3151</x>
+          <y>591</y>
+        </point>
+        <point>
+          <x>2401</x>
+          <y>591</y>
+        </point>
+        <point>
+          <x>2401</x>
+          <y>531</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="12081">
+      <line>
+        <point>
+          <x>1211</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>1211</x>
+          <y>165</y>
         </point>
       </line>
     </relationView>
     <componentView color="-2079" componentID="7696" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>130</x>
-        <y>940</y>
-        <w>220</w>
-        <h>55</h>
+        <x>290</x>
+        <y>340</y>
+        <w>400</w>
+        <h>130</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="7697" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>910</x>
-        <y>340</y>
+        <x>1520</x>
+        <y>310</y>
         <w>240</w>
         <h>250</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="7834" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>1320</x>
-        <y>680</y>
-        <w>200</w>
-        <h>85</h>
+        <x>1490</x>
+        <y>690</y>
+        <w>330</w>
+        <h>100</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="7835" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>1750</x>
-        <y>680</y>
-        <w>200</w>
-        <h>85</h>
+        <x>1990</x>
+        <y>690</y>
+        <w>350</w>
+        <h>100</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="7836" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>2120</x>
-        <y>680</y>
-        <w>200</w>
-        <h>85</h>
+        <x>2470</x>
+        <y>690</y>
+        <w>360</w>
+        <h>115</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="7838" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>1680</x>
+        <x>2240</x>
         <y>340</y>
         <w>350</w>
         <h>190</h>
@@ -347,19 +504,67 @@
     </componentView>
     <componentView color="-2079" componentID="8213" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>310</x>
-        <y>330</y>
+        <x>1050</x>
+        <y>300</y>
         <w>310</w>
         <h>400</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="11599" enumValuesVisible="DEFAULT">
       <geometry>
-        <x>1150</x>
+        <x>2240</x>
         <y>60</y>
         <w>150</w>
         <h>104</h>
       </geometry>
     </componentView>
+    <componentView color="-2079" componentID="11904" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>2990</x>
+        <y>690</y>
+        <w>320</w>
+        <h>100</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="11998" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>1070</x>
+        <y>50</y>
+        <w>250</w>
+        <h>114</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="12082" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>0</x>
+        <y>340</y>
+        <w>260</w>
+        <h>205</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="12524" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>490</x>
+        <y>40</y>
+        <w>210</w>
+        <h>84</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="12809" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>380</x>
+        <y>710</y>
+        <w>430</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <note color="-2079" content="eventuellement ajouter fonction close ?">
+      <noteGeometry>
+        <x>430</x>
+        <y>440</y>
+        <w>100</w>
+        <h>75</h>
+      </noteGeometry>
+    </note>
   </umlView>
 </classDiagram>
