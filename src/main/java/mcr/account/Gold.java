@@ -11,7 +11,6 @@ public class Gold extends AccountState {
      */
     public Gold(Account account) {
         super(account);
-        this.mileCoeff = 0.5;
     }
 
     /**
@@ -31,5 +30,14 @@ public class Gold extends AccountState {
     @Override
     public AccountStatus getStatus(){
         return AccountStatus.GOLD;
+    }
+
+    /**
+     * Get the mile coeff
+     * @return mile coeff
+     */
+    @Override
+    public double getMileCoeff() {
+        return 0.5;
     }
 }

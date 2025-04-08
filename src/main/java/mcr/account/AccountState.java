@@ -6,8 +6,6 @@ package mcr.account;
  */
 public abstract class AccountState {
     private final Account account;
-    protected double mileCoeff;
-
     /**
      * Creates a new account state
      * @param account The account this state belongs to
@@ -52,8 +50,10 @@ public abstract class AccountState {
         this.getAccount().getClient().notifySubscribers();
     }
 
+    /**
+     * Gets the miles coefficient of the state
+     * @return
+     */
+    public abstract double getMileCoeff();
 
-    public double getMileCoeff(){
-        return mileCoeff;
-    }
 }
