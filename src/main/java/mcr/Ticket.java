@@ -1,5 +1,9 @@
 package mcr;
 
+/**
+ * Represents a flight ticket with base price and type
+ * Manage the calculation of final price based on ticket type
+ */
 public class Ticket {
     private final double basePrice;
     private final TicketType ticketType;

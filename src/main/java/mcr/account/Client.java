@@ -10,6 +10,7 @@ import java.util.LinkedList;
  * Client class. Clients are publishers and will notify the Windows when relevant information changes.
  */
 public class Client implements Publisher {
+
     private String lastAction;
     private final String firstName;
     private final String lastName;
@@ -18,6 +19,9 @@ public class Client implements Publisher {
     private final Account account;
     private final LinkedList<Subscriber> subscribers = new LinkedList<>();
 
+    public enum PaymentMethod {
+        CREDITS, MILES
+    }
     /**
      * Constructor for client. Client it is automatically granted a client id
      * @param firstName first name of the client
@@ -63,39 +67,52 @@ public class Client implements Publisher {
         return lastAction;
     }
 
-
-    // TODO factorize the two book methods ?
-
-    public void bookWithCredits(Flight flight, Ticket ticket) {
-        double cost = ticket.getFinalPrice();
-        if (this.account.getCredit() >= cost) {
-            this.account.addCredit(cost * -1) ;
-            this.account.setMiles(this.account.getMiles() + flight.getDistance() * this.account.getState().getMileCoeff());
-            this.lastAction = "Booked " + flight + " in "+ ticket + " class using credits";
+    /**
+     * Book a flight with either cash or miles.
+     * @param flight the flight to book for.
+     * @param ticket The ticket type to book
+     * @param paymentMethod The payment method (cash, miles)
+     */
+    public void book(Flight flight, Ticket ticket, PaymentMethod paymentMethod){
+        double cost;
+        String successMessage;
+        boolean canPay;
+        if (paymentMethod == PaymentMethod.CREDITS) {
+            cost = ticket.getFinalPrice();
+            canPay = this.account.getCredit() >= cost;
+            successMessage = "Booked " + flight + " in " + ticket + " class using credits";
+        } else {
+            cost = flight.getDistance() * ticket.getTicketType().getMilesCoeff();
+            canPay = this.account.getMiles() >= cost;
+            successMessage = "Booked " + flight + " in " + ticket + " class using miles";
+        }
+        if (canPay) {
+            if (paymentMethod == PaymentMethod.CREDITS) {
+                this.account.addCredit(cost * -1);
+                this.account.setMiles(this.account.getMiles() + flight.getDistance() * this.account.getState().getMileCoeff());
+            } else {
+                this.account.setMiles(this.account.getMiles() - cost);
+            }
+            this.lastAction = successMessage;
             this.notifySubscribers();
         } else {
-            this.lastAction = "Not enough credits to book " + flight;
-        }
-    }
-
-    public void bookWithMiles(Flight flight, Ticket ticket) {
-        double cost = flight.getDistance() * ticket.getTicketType().getMilesCoeff();
-        if (this.account.getMiles() >= cost) {
-            this.account.setMiles(this.account.getMiles() - cost);
-            this.lastAction = "Booked " + flight + " in "+ ticket + " class using miles";
-            this.notifySubscribers();
+            this.lastAction = "Not enough " + paymentMethod.toString().toLowerCase() + " to book " + flight;
         }
     }
 
     /**
-     * Adds a subscriber the list of subscribers.
-     * @param subscriber the subscriber to subscriber
+     * Adds a subscriber to the list of subscribers.
+     * @param subscriber the subscriber to subscribe
      */
     @Override
     public void subscribe(Subscriber subscriber) {
         this.subscribers.add(subscriber);
     }
 
+    /**
+     * Remove a subscriber from the list of subscribers.
+     * @param subscriber the subscriber to unsubscribe
+     */
     @Override
     public void unsubscribe(Subscriber subscriber) {
         this.subscribers.remove(subscriber);

@@ -2,6 +2,9 @@ package mcr.account;
 
 import mcr.Subscriber;
 
+/**
+ * Interface for objects that notify subscribers of changes.
+ */
 public interface Publisher {
     /**
      * Should subscribe a given subscriber to the Publisher

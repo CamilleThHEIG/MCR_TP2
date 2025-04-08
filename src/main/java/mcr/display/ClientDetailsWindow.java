@@ -6,6 +6,10 @@ import mcr.account.Publisher;
 
 import javax.swing.*;
 
+/**
+ * Window showing clients informations
+ * Update when client changes
+ */
 public class ClientDetailsWindow implements Subscriber {
     private JFrame frame;
     private Client client;
@@ -17,6 +21,10 @@ public class ClientDetailsWindow implements Subscriber {
     private JLabel statusValueLabel;
     private JLabel lastActionValueLabel;
 
+    /**
+     * Creates window for client.
+     * @param client Client to display
+     */
     public ClientDetailsWindow(Client client) {
         this.client = client;
         client.subscribe(this);
@@ -73,6 +81,10 @@ public class ClientDetailsWindow implements Subscriber {
         frame.setVisible(true);
     }
 
+    /**
+     * Update window when client changes
+     * @param publisher The client
+     */
     @Override
     public void update(Publisher publisher) {
         // TODO handle exceptions
@@ -83,12 +95,5 @@ public class ClientDetailsWindow implements Subscriber {
             statusValueLabel.setText(String.valueOf(updatedClient.getAccount().getAccountStatus()));
             lastActionValueLabel.setText(updatedClient.getLastAction());
         }
-    }
-
-    //TODO this is not used, so remove ?
-    public void close() {
-        System.out.println("Window closing");
-        client.unsubscribe(this); // Se désabonne lors de la fermeture
-        frame.dispose();
     }
 }
