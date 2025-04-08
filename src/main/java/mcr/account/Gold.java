@@ -28,6 +28,4 @@ public class Gold extends AccountState {
     public AccountStatus getStatus(){
         return AccountStatus.GOLD;
     }
-
-    public String getAccountType(){return "GOLD";}
 }

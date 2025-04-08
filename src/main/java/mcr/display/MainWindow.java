@@ -8,14 +8,21 @@ import mcr.account.Client;
 import javax.swing.*;
 import java.util.LinkedList;
 
+/**
+ * Main application window
+ */
 public class MainWindow {
     private final JFrame frame;
     private Flight selectedFlight;
     private Ticket selectedTicket;
     private Client selectedClient;
 
+    /**
+     * Creates main window with clients and flights.
+     * @param clients List of clients
+     * @param flights List of flights
+     */
     public MainWindow(LinkedList<Client> clients, LinkedList<Flight> flights) {
-        // TODO we can split this constructor into multiple functions
         this.selectedFlight = flights.getFirst();
         this.selectedClient = clients.getFirst();
         this.selectedTicket = this.selectedFlight.getTickets().getFirst();
@@ -77,7 +84,7 @@ public class MainWindow {
         bookCashButton.addActionListener(e -> {
             Client selectedClient = (Client) clientComboBox.getSelectedItem();
             if (selectedClient != null && selectedFlight != null && selectedTicket != null) {
-                selectedClient.bookWithCredits(selectedFlight, selectedTicket);
+                selectedClient.book(selectedFlight, selectedTicket, Client.PaymentMethod.CREDITS);
             } else {
                 JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }
@@ -87,7 +94,7 @@ public class MainWindow {
         bookMilesButton.addActionListener(e -> {
             Client selectedClient = (Client) clientComboBox.getSelectedItem();
             if (selectedClient != null && selectedFlight != null && selectedTicket != null) {
-                selectedClient.bookWithMiles(selectedFlight, selectedTicket);
+                selectedClient.book(selectedFlight, selectedTicket, Client.PaymentMethod.MILES);
             } else {
                 JOptionPane.showMessageDialog(frame, "Please select a client, flight and ticket class");
             }

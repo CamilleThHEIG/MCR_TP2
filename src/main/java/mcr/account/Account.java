@@ -49,7 +49,7 @@ public class Account{
      * @param addedCredit the credit to be added
      */
     public void addCredit(double addedCredit){
-        this.credit += addedCredit;     // TODO fix warning
+        this.credit += (int) addedCredit;
         if(this.state instanceof Platinium)
             this.state.checkForPermanentPlatiniumUpgrade(this.credit);
     }

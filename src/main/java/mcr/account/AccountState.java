@@ -16,9 +16,16 @@ public abstract class AccountState {
         this.account = account;
     }
 
-
+    /**
+     * Handle miles changes and can trigger status change
+     * @param miles Miles value
+     */
     public abstract void checkForNewStateWithMiles(double miles);
 
+    /**
+     * Handle the permanent platinium upgrade when enough credit
+     * @param credits Total credit
+     */
     public void checkForPermanentPlatiniumUpgrade(int credits){}
 
     protected Account getAccount(){
@@ -27,6 +34,11 @@ public abstract class AccountState {
 
     public abstract AccountStatus getStatus();
 
+
+    /**
+     * Change account state and notify clients
+     * @param c new state
+     */
     protected void setAccountState(AccountState c) {
         this.getAccount().setState(c);
         this.getAccount().getClient().notifySubscribers();
