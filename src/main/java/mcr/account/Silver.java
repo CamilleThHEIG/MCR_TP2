@@ -29,13 +29,4 @@ public class Silver extends AccountState {
     public AccountStatus getStatus() {
         return AccountStatus.SILVER;
     }
-
-    /**
-     * Get the mile coeff
-     * @return mile coeff
-     */
-    @Override
-    public double getMileCoeff() {
-        return 0.1;
-    }
 }

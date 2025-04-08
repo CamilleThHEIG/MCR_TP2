@@ -39,6 +39,6 @@ public class Ticket {
      * @return string containing the ticket information
      */
     public String toString(){
-        return ticketType.toString() + " " + this.getFinalPrice();
+        return ticketType.toString() + " " + (int)this.getFinalPrice() + " CHF"; // Boycott de donald trump et des STATES
     }
 }

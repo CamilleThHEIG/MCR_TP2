@@ -42,5 +42,7 @@ public abstract class AccountState {
         this.getAccount().getClient().notifySubscribers();
     }
 
-    public abstract double getMileCoeff();
+    public double getMileCoeff(){
+        return this.getStatus().getMilesCoeff();
+    }
 }

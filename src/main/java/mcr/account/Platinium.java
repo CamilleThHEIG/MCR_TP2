@@ -38,13 +38,4 @@ public class Platinium extends AccountState {
     public AccountStatus getStatus() {
         return AccountStatus.PLATINIUM;
     }
-
-    /**
-     * Get the mile coeff
-     * @return mile coeff
-     */
-    @Override
-    public double getMileCoeff() {
-        return 1;
-    }
 }

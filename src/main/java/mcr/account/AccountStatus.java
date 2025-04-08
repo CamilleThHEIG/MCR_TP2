@@ -4,7 +4,13 @@ package mcr.account;
  * Account status types
  */
 public enum AccountStatus {
-    SILVER, GOLD, PLATINIUM;
+    SILVER(0.1), GOLD(0.5), PLATINIUM(1);
+
+    private final double coefficient;
+
+    AccountStatus(double value) {
+        this.coefficient = value;
+    }
 
     /**
      * Returns status name as string.
@@ -12,5 +18,13 @@ public enum AccountStatus {
      */
     public String toString(){
         return this.name();
+    }
+
+    /**
+     * Get the mile coeff
+     * @return mile coeff
+     */
+    public double getMilesCoeff(){
+        return this.coefficient;
     }
 }
