@@ -31,6 +31,10 @@ public class Platinium extends AccountState {
 
     }
 
+    /**
+     * Gets the status of the AccountState.
+     * @return status of the AccountState
+     */
     @Override
     public AccountStatus getStatus() {
         return AccountStatus.PLATINIUM;

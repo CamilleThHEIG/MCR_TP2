@@ -22,6 +22,10 @@ public class Silver extends AccountState {
         if(miles >= 1000) setAccountState(new Gold(this.getAccount()));
     }
 
+    /**
+     * Gets the status of the AccountState.
+     * @return status of the AccountState
+     */
     @Override
     public AccountStatus getStatus() {
         return AccountStatus.SILVER;
