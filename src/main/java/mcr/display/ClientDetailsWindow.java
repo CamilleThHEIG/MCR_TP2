@@ -7,8 +7,8 @@ import mcr.account.Publisher;
 import javax.swing.*;
 
 public class ClientDetailsWindow implements Subscriber {
-    private JFrame frame;
-    private Client client;
+    private final JFrame frame;
+    private final Client client;
 
     private JLabel lastNameValueLabel;
     private JLabel firstNameValueLabel;

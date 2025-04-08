@@ -42,8 +42,7 @@ public class StatusesWindow implements Subscriber {
 
     @Override
     public void update(Publisher publisher) {
-        if(publisher instanceof Client){
-            Client client = (Client) publisher;
+        if(publisher instanceof Client client){
             JLabel j = clientsLabels.get(client);
             j.setText(client.getFullName() + " " + client.getAccount().getAccountStatus());
             switch (client.getAccount().getAccountStatus()){
@@ -56,7 +55,5 @@ public class StatusesWindow implements Subscriber {
             }
 
         }
-
-
     }
 }
