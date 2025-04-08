@@ -21,10 +21,18 @@ public enum TicketType {
         this.milesCoeff = milesCoeff;
     }
 
+    /**
+     * Gets the price coefficient of the ticket type.
+     * @return the price coefficient of the ticket type.
+     */
     public double getPriceCoeff() {
         return priceCoeff;
     }
 
+    /**
+     * Gets the miles coefficient of the ticket type.
+     * @return the miles coefficient of the ticket type.
+     */
     public double getMilesCoeff() {
         return milesCoeff;
     }

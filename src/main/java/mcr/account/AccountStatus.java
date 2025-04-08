@@ -8,8 +8,12 @@ public enum AccountStatus {
 
     private final double coefficient;
 
-    AccountStatus(double value) {
-        this.coefficient = value;
+    /**
+     * Creates an AccountStatus.
+     * @param milesCoeff Miles multiplier
+     */
+    AccountStatus(double milesCoeff) {
+        this.coefficient = milesCoeff;
     }
 
     /**
