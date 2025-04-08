@@ -28,10 +28,15 @@ public abstract class AccountState {
      */
     public void checkForPermanentPlatiniumUpgrade(int credits){}
 
+
     protected Account getAccount(){
         return account;
     }
 
+    /**
+     * Gets the status of the AccountState.
+     * @return status of the AccountState
+     */
     public abstract AccountStatus getStatus();
 
 

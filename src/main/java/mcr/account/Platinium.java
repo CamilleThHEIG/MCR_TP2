@@ -24,11 +24,15 @@ public class Platinium extends AccountState {
     }
 
 
+    /**
+     * Checks whether to permanently upgrade to state PermanentPlatinum. If the conditions are met (credit > 100000,
+     * change will be automatically done.
+     * @param credits credits to base the decisions on.
+     */
     @Override
     public void checkForPermanentPlatiniumUpgrade(int credits) {
         if(credits > 100000)
             setAccountState(new PermanentPlatinium(this.getAccount()));
-
     }
 
     /**
