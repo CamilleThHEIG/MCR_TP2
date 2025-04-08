@@ -17,14 +17,13 @@ public class Flight {
      * @param name name of the flight
      * @param distance distance of the flight ot reach destination
      * @param ticketPrice ticket price of the flight
-     * @param tickets ticket list of the flight
      */
-    public Flight(String name, int distance, double ticketPrice, LinkedList<TicketType> tickets) {
+    public Flight(String name, int distance, double ticketPrice) {
         this.name = name;
         this.distance = distance;
-        for(TicketType t : tickets){
-            this.tickets.add(new Ticket(ticketPrice, t));
-        }
+        this.tickets.add(new Ticket(ticketPrice, TicketType.First));
+        this.tickets.add(new Ticket(ticketPrice, TicketType.Economy)); // Ex: Business coûte 2x Economy
+        this.tickets.add(new Ticket(ticketPrice, TicketType.Business));
     }
 
     /**
