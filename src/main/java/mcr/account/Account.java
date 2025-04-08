@@ -49,7 +49,7 @@ public class Account{
      * @param addedCredit the credit to be added
      */
     public void addCredit(double addedCredit){
-        this.credit += addedCredit;
+        this.credit += (int) addedCredit;
         if(this.state instanceof Platinium)
             this.state.checkForPermanentPlatiniumUpgrade(this.credit);
     }
@@ -78,8 +78,10 @@ public class Account{
         return state;
     }
 
-
-
+    /**
+     * Gets the status of the account.
+     * @return the status of the account.
+     */
     public AccountStatus getAccountStatus(){
         return this.state.getStatus();
     }

@@ -17,13 +17,13 @@ public abstract class AccountState {
     }
 
     /**
-     * Handles miles changes, can trigger status change
+     * Handle miles changes and can trigger status change
      * @param miles Miles value
      */
     public abstract void checkForNewStateWithMiles(double miles);
 
     /**
-     * Handles the permanent platinium upgrade when enough credit
+     * Handle the permanent platinium upgrade when enough credit
      * @param credits Total credit
      */
     public void checkForPermanentPlatiniumUpgrade(int credits){}
