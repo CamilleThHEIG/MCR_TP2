@@ -1,17 +1,23 @@
 package mcr.account;
 
+/**
+ * Abstract class for account states
+ * Implements the State pattern for account status management
+ */
 public abstract class AccountState {
-    private final Account account;  //TODO not sure about final
+    private final Account account;
     protected double mileCoeff;
 
-
-
+    /**
+     * Creates a new account state
+     * @param account The account this state belongs to
+     */
     public AccountState(Account account){
         this.account = account;
     }
-    public abstract void setMiles(double miles);
+    public abstract void checkForNewStateWithMiles(double miles);
 
-    public void setCredits(int credits){}
+    public void checkForPermanentPlatiniumUpgrade(int credits){}
 
     protected Account getAccount(){
         return account;

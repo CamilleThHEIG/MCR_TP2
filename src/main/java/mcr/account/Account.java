@@ -1,12 +1,19 @@
 package mcr.account;
 
-// TODO : could the AccountState be an internal class ?
+/**
+ * Represents a client account with miles, credits, and status state
+ * Uses the State pattern to manage different account statuses
+ */
 public class Account{
     private AccountState state;
     private double miles;
     private int credit;
     private final Client client;
 
+    /**
+     * Creates a new account for a client with the silver status
+     * @param client The client linked to this account
+     */
     public Account(Client client){
         this.state = new Silver(this);
         this.client = client;
@@ -25,7 +32,7 @@ public class Account{
      * @param miles the number of miles to set
      */
     public void setMiles(double miles){
-        this.state.setMiles(miles);
+        this.state.checkForNewStateWithMiles(miles);
         this.miles = miles;
     }
 
@@ -43,7 +50,8 @@ public class Account{
      */
     public void addCredit(double addedCredit){
         this.credit += addedCredit;
-        this.state.setCredits(this.credit);
+        if(this.state instanceof Platinium)
+            this.state.checkForPermanentPlatiniumUpgrade(this.credit);
     }
 
     /**

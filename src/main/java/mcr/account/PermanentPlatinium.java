@@ -7,7 +7,7 @@ public class PermanentPlatinium extends AccountState{
     }
 
     @Override
-    public void setMiles(double miles) {
+    public void checkForNewStateWithMiles(double miles) {
 
     }
 
