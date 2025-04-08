@@ -31,13 +31,4 @@ public class Gold extends AccountState {
     public AccountStatus getStatus(){
         return AccountStatus.GOLD;
     }
-
-    /**
-     * Get the mile coeff
-     * @return mile coeff
-     */
-    @Override
-    public double getMileCoeff() {
-        return 0.5;
-    }
 }

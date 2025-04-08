@@ -51,9 +51,11 @@ public abstract class AccountState {
     }
 
     /**
-     * Gets the miles coefficient of the state
-     * @return
+     * Gets the miles coefficient of the state (which is actually the one of his status.
+     * @return the miles coefficient of the state.
      */
-    public abstract double getMileCoeff();
+    public double getMileCoeff(){
+        return this.getStatus().getMilesCoeff();
+    }
 
 }
