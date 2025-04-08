@@ -26,7 +26,7 @@ public abstract class AccountState {
     }
 
     public abstract AccountStatus getStatus();
-    
+
     protected void setAccountState(AccountState c) {
         this.getAccount().setState(c);
         this.getAccount().getClient().notifySubscribers();
