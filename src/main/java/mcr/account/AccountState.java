@@ -28,7 +28,10 @@ public abstract class AccountState {
      */
     public void checkForPermanentPlatiniumUpgrade(int credits){}
 
-
+    /**
+     * Gets the account the state is linked to. Only used inside the class.
+     * @return reference to the account the state is linked to.
+     */
     protected Account getAccount(){
         return account;
     }
@@ -48,6 +51,7 @@ public abstract class AccountState {
         this.getAccount().setState(c);
         this.getAccount().getClient().notifySubscribers();
     }
+
 
     public double getMileCoeff(){
         return mileCoeff;
