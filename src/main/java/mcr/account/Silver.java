@@ -10,7 +10,6 @@ public class Silver extends AccountState {
      */
     public Silver(Account account) {
         super(account);
-        this.mileCoeff = 0.1;
     }
 
     /**
@@ -29,5 +28,14 @@ public class Silver extends AccountState {
     @Override
     public AccountStatus getStatus() {
         return AccountStatus.SILVER;
+    }
+
+    /**
+     * Get the mile coeff
+     * @return mile coeff
+     */
+    @Override
+    public double getMileCoeff() {
+        return 0.1;
     }
 }
